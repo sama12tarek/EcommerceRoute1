@@ -19,7 +19,12 @@ type Order = {
   _id: string;
   totalOrderPrice: number;
   paymentMethodType: string;
-
+  user: {
+    _id: string;
+    name?: string;
+    email?: string;
+    phone?: string;
+  };
 };
 
 export default function AllOrders() {
@@ -43,13 +48,15 @@ export default function AllOrders() {
         role: string;
         iat: number;
         exp: number;
-      } = jwtDecode(token.token);
+      } = jwtDecode(token.token as string);
+
 
     
 
       const res = await getUserOrder(id);
   
       setAllOrders(res);
+
 
     } catch (err) {
       console.log("Error fetching orders:", err);
@@ -90,7 +97,7 @@ export default function AllOrders() {
         <TableCell className="px-4 py-3 text-center">
         
 <ViewBtn orderId={order._id} />
-
+<p>{order.user._id}nnnn</p>
       
         </TableCell>
       </TableRow>

@@ -21,14 +21,28 @@ export default function CategorySwiper({ data }: CategorySwiperProps) {
 
 
   return (
-    <div className="mx-auto w-[80%]">
-      <h1 className='text-2xl font-bold text-pink-500 my-4'> category slider</h1>
+    <div className="mx-auto w-[80%] md:w-[80%] sm:w-[50%]">
+      <h1 className='text-2xl font-bold text-sky-500 my-4'> category slider</h1>
       <Swiper
         spaceBetween={0}
         slidesPerView={7}
         modules={[Autoplay]}
         autoplay={{ delay: 2000 }}
         loop
+        breakpoints={{
+          640: {
+            slidesPerView: 3,
+          },
+          768: {
+            slidesPerView: 4,
+          },
+          1024: {
+            slidesPerView: 6,
+          },
+          1280: {
+            slidesPerView: 7,
+          },
+        }}
       >
 
         {data.map((category: CategoryType) => (

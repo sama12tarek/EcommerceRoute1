@@ -13,7 +13,7 @@ console.log(result)
   const res = await fetch('https://ecommerce.routemisr.com/api/v1/cart', {
     method: 'GET',
     headers: {
-      token: result.token,           
+      token: result.token as string,           
       'Content-Type': 'application/json',
     },
   });

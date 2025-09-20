@@ -12,7 +12,7 @@ export default async function addProductWishlist(productId: string) {
   const res = await fetch('https://ecommerce.routemisr.com/api/v1/wishlist', {
     method: 'POST',
     headers: {
-      token:result.token, 
+      token:result.token as string, 
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ productId }),

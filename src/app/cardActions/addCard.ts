@@ -12,7 +12,7 @@ export default async function addCard(id: string) {
     method: "POST",
     headers: {
       
-      token: tokenResult.token,  
+      token: tokenResult.token as string,  
         'Content-Type': 'application/json', 
     },
     body: JSON.stringify({ productId: id })

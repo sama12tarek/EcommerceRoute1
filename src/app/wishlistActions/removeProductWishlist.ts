@@ -11,7 +11,7 @@ if(!result){
 const res=await  fetch(`https://ecommerce.routemisr.com/api/v1/wishlist/${id}`,{
     method:'DELETE',
     headers:{
-      token:result.token
+      token:result.token as string
     }
   })
   const payload=await res.json()

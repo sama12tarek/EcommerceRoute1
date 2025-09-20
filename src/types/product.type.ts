@@ -1,3 +1,6 @@
+import { Daum } from './category.type';
+
+
 export interface Root {
   results: number
   metadata: Metadata
@@ -11,7 +14,7 @@ export interface Metadata {
   nextPage: number
 }
 
-export interface ProductType {
+export  interface ProductType {
   sold?: number
   images: string[]
   subcategory: Subcategory[]

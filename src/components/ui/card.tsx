@@ -3,8 +3,7 @@ import * as React from "react"
 import { cn } from "@/lib/utils"
 
 export default async function Card({ className, ...props }: React.ComponentProps<"div">) {
-const data=await  fetch('http://localhost:3000/api/samasemo')
-console.log(data)
+
   return (
     <div
       data-slot="card"

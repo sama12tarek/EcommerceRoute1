@@ -11,8 +11,8 @@ import { Autoplay } from 'swiper/modules';
 
 const MainSlider = () => {
   return (
-    <div className="w-[80%] flex p-4 my-4 mx-auto">
-      <div className="w-3/4">
+    <div className="w-[90%] mx-auto my-4 p-4 flex flex-row md:flex-column gap-3">
+      <div className="w-full md:w-3/4 ">
         <Swiper
           spaceBetween={0}
           slidesPerView={1}
@@ -24,21 +24,21 @@ const MainSlider = () => {
             <Image
               src={img1}
               alt="Slider Image 1"
-              className="w-full h-[400px] object-cover"
+              className="w-full h-[200px] md:h-[400px] object-cover object-center"
             />
           </SwiperSlide>
           <SwiperSlide>
             <Image
               src={img2}
               alt="Slider Image 2"
-              className="w-full h-[400px] object-cover"
+              className="w-full h-[200px] md:h-[400px] object-cover object-center"
             />
           </SwiperSlide>
           <SwiperSlide>
             <Image
               src={img3}
               alt="Slider Image 3"
-              className="w-full h-[400px] object-cover"
+              className="w-full h-[200px] md:h-[400px] object-cover object-center"
             />
           </SwiperSlide>
         </Swiper>
@@ -47,12 +47,12 @@ const MainSlider = () => {
         <Image
           src={img2}
           alt="Sidebar Image 1"
-          className="w-full h-[200px] object-cover"
+          className="w-full h-[200px] md:h-[400px] object-cover object-center"
         />
         <Image
           src={img3}
           alt="Sidebar Image 2"
-          className="w-full h-[200px] object-cover"
+          className="w-full h-[200px] md:h-[400px] object-cover object-center"
         />
       </div>
     </div>

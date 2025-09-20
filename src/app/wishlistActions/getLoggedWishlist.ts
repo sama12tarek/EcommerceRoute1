@@ -21,7 +21,7 @@ export default async function getLoggedWishlist(): Promise<WishlistApiResponse> 
   const res = await fetch('https://ecommerce.routemisr.com/api/v1/wishlist', {
     method: 'GET',
     headers: {
-      token: result.token,
+      token: result.token as string,
     },
   })
 

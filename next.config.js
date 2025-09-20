@@ -1,6 +1,11 @@
+
+
+
 const withFlowbiteReact = require("flowbite-react/plugin/nextjs");
 
-/** @type {import('next').NextConfig} */
+ /*
+ @type {import('next').NextConfig}
+*/
 const nextConfig = {
   images: {
     remotePatterns: [
@@ -11,6 +16,9 @@ const nextConfig = {
       },
     ],
   },
+  
+
+  
 };
 
 module.exports = withFlowbiteReact(nextConfig);

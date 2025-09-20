@@ -16,7 +16,7 @@ export default async function cashorder(orderId: string, formValues: shippingAdd
   const res = await fetch(`https://ecommerce.routemisr.com/api/v1/orders/${orderId}`, {
     method: 'POST',
     headers: {
-      token: result.token,  // تأكد من أن الـ API يحتاج هذا الهيدر بهذا الشكل
+      token: result.token as string,  // تأكد من أن الـ API يحتاج هذا الهيدر بهذا الشكل
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ shippingAddress: formValues }),

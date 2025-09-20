@@ -1,33 +1,14 @@
+import { NextResponse } from "next/server";
 
-import { NextResponse } from 'next/server';
-
+// دالة GET لجلب البيانات من API خارجي
 export async function GET() {
-  const response = await fetch('https://api.example.com/categories');
-
-  if (!response.ok) {
-    console.log('Error fetching categories:', response.statusText);
-    return NextResponse.json(
-      { error: 'Failed to fetch categories' },
-      { status: response.status }
-    );
-  }
-
-  const data = await response.json();
-  return NextResponse.json(data);
-}
-/*
-
-import { NextResponse, NextRequest } from 'next/server';
-
-export async function GET(request: NextRequest) {
   try {
-    const response = await fetch('https://ecommerce.routemisr.com/api/v1/categories');
+    const response = await fetch("https://ecommerce.routemisr.com/api/v1/categories");
 
-    // التحقق من نجاح الاستجابة
     if (!response.ok) {
-      console.log('Error fetching categories:', response.statusText);
+      console.log("Error fetching categories:", response.statusText);
       return NextResponse.json(
-        { error: 'Failed to fetch categories' },
+        { error: "Failed to fetch categories" },
         { status: response.status }
       );
     }
@@ -35,9 +16,9 @@ export async function GET(request: NextRequest) {
     const data = await response.json();
     return NextResponse.json(data);
   } catch (error) {
-    console.error('Server error in /api/samasemo:', error);
+    console.error("Server error in /api/samasemo:", error);
     return NextResponse.json(
-      { error: 'Internal Server Error' },
+      { error: "Internal Server Error" },
       { status: 500 }
     );
   }
@@ -45,7 +26,7 @@ export async function GET(request: NextRequest) {
 
 
 
-*/
+
 
 
 /*

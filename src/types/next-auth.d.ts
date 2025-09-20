@@ -1,3 +1,30 @@
+// next-auth.d.ts
+import { Session as NextAuthSession } from "next-auth";
+
+declare module "next-auth" {
+  // Define your custom User interface with the `token` property
+  interface User {
+    id: string;
+    name: string;
+    email: string;
+    token?: string; // Add `token` to the `User` interface
+  }
+
+  // Extend Session to include the token in user
+  interface Session extends NextAuthSession {
+    user: {
+      id: string;
+      name: string;
+      email: string;
+      token?: string;
+    };
+  }
+}
+
+
+
+
+/*
 import type { Session } from "next-auth";
 import type { JWT } from "next-auth/jwt";
 import type { AdapterUser } from "next-auth/adapters";
@@ -9,10 +36,12 @@ declare module "next-auth" {
       id: string;
       name: string;
       email: string;
-      token: string; // إضافة token إلى user
+      token: string;
+      
     };
   }
 }
+
 
 // تخصيص الكولباك jwt و session
 export const callbacks = {
@@ -50,7 +79,7 @@ export const callbacks = {
 
 
 
-/*
+
 declare module "next-auth" {
   interface User {
     name: string;
@@ -69,4 +98,5 @@ declare module "next-auth/jwt" {
     idToken?: string;
   }
 }
+
 */

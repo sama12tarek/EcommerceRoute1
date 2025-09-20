@@ -1,18 +1,27 @@
-import { checkoutSchemaType } from "@/schema/checkout.schema";
 
+
+'use server';
+
+import {  checkoutSchemaType } from '@/schema/checkout.schema';
+import getMyToken from '@/utilities/getMyToken'
 export default async function onlinePayment(
   cartId: string,
-  redirectUrl: string,  
+  redirectUrl: string,
   checkoutData: checkoutSchemaType
 ) {
-  
-
   try {
+    const token = await getMyToken()
+
+    if (!token) {
+      throw new Error("لم يتم العثور على التوكن في الكوكيز. يجب تسجيل الدخول.");
+    }
+
     const response = await fetch(
       `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartId}?url=${encodeURIComponent(redirectUrl)}`,
       {
         method: "POST",
         headers: {
+            token:token.token as string,
           "Content-Type": "application/json",
         
         },
@@ -20,18 +29,20 @@ export default async function onlinePayment(
       }
     );
 
-    if (!response.ok) {
-      const errorBody = await response.text();
-      console.error(`Payment API error. Status: ${response.status}, Body: ${errorBody}`);
-      throw new Error("Failed to initiate online payment.");
+    const data = await response.json();
+    console.log(data)
+    return data;
+  
+
+    if (!data || data.status === "fail" || data.message) {
+      throw new Error(data.message || "Failed to initiate online payment.");
     }
 
-    const data = await response.json();
-    return data;
-  } catch (error) {
+
+
+  } catch (error: unknown) {
     console.error("Online payment error:", error);
     throw error;
   }
+      
 }
-
-
