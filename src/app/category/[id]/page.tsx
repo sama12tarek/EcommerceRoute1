@@ -1,94 +1,65 @@
+
 // app/category/[id]/page.tsx
-import CategoryDetailsClient from './CategoryDetailsClient'; // ✅ مهم
 
-export default function CategoryPage({ params }: { params: { id: string } }) {
-  return <CategoryDetailsClient id={params.id} />;
-}
+"use client";
 
+import React, { useEffect, useState } from "react";
+import { useParams } from "next/navigation";
 
-
-
-/*
-
-'use client';
-import { ProductType } from "@/types/product.type";
-import { useEffect, useState } from 'react';
-import Image from 'next/image';
-import SingleProduct from '@/app/singleProduct/singleProduct'
-export interface CategoryData {
+interface Subcategory {
   _id: string;
   name: string;
-  slug: string;
-  image: string;
-  createdAt: string;
-  updatedAt: string;
+  category: string;
+  slug?: string;
+  createdAt?: string;
 }
 
-export default function CategoryDetailsPage({ params }: { params: { id: string } }) {
-  const id = params.id;
+const SubcategoriesPage = () => {
+  const params = useParams();
+  const categoryId = params.id as string;
 
-
-
-
-  const [category, setCategory] = useState<CategoryData | null>(null);
+  const [subcategories, setSubcategories] = useState<Subcategory[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    async function fetchCategory(id:string) {
-      const res = await fetch( `https://ecommerce.routemisr.com/api/v1/products?category=${id} `);
-      if (!id || Array.isArray(id)) {
-        setError('Invalid category ID');
-        setLoading(false);
-        return;
-      }
-
+    const fetchSubcategories = async () => {
       try {
-      
+        const res = await fetch("https://ecommerce.routemisr.com/api/v1/subcategories");
         const data = await res.json();
-
-        if (data.status === 'success') {
-          setCategory(data.data);
-          setError(null);
-        } else {
-          setError(data.message || 'Failed to fetch category');
-        }
-      } catch{
-        setError('Error fetching category');
+        const filtered = data.data.filter((sub: Subcategory) => sub.category === categoryId);
+        setSubcategories(filtered);
+      } catch (err) {
+        console.error("Error fetching subcategories:", err);
       } finally {
         setLoading(false);
       }
+    };
+
+    if (categoryId) {
+      fetchSubcategories();
     }
+  }, [categoryId]);
 
-    fetchCategory(id)
-  }, [id]);
-
-  if (loading) return <div className="flex justify-center items-center h-screen">Loading...</div>;
-
-  if (error) return <div className="text-red-500 p-4">Error: {error}</div>;
-
-  if (!category) return <div>No category found.</div>;
+  if (loading) {
+    return <div className="text-center mt-10">Loading subcategories...</div>;
+  }
 
   return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">{data?.[0].category.name}</h1>
-      {data?.map((product: ProductType) => ( <SingleProduct key={product.id} product={product} /> ))}
-    {category.image && (
-  <Image
-    src={category.image}
-    alt={category.name}
-    width={200}
-    height={200}
-    className="max-w-xs rounded-md shadow-md"
-  />
-)}
-
+    <div className="max-w-4xl mx-auto p-6">
+      <h1 className="text-2xl font-bold text-blue-700 mb-4">Subcategories</h1>
+      {subcategories.length === 0 ? (
+        <p className="text-gray-500">No subcategories found for this category.</p>
+      ) : (
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+          {subcategories.map((sub) => (
+            <div key={sub._id} className="p-4 border rounded bg-sky-400 hover:bg-sky-300 transition">
+              {sub.name}
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
-}
+};
 
-
-*/
-
-
-
+export default SubcategoriesPage;

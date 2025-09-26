@@ -12,10 +12,10 @@ import {
 } from "@/components/ui/card";
 import Link from 'next/link';
 import Image from 'next/image';
-import { ProductType } from './../../types/product.type';
+import { Product } from './../../types/product.type';
 import AddBtn from '@/app/_components/AddBtn/AddBtn';
 import AddChicklistIcon from '@/app/_components/addChicklistIcon/addChicklistIcon';
-export default function SingleProduct({ product }: { product: ProductType }) {
+export default function SingleProduct({ product }: { product: Product }) {
 
 
   return (

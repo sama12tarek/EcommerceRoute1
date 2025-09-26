@@ -2,7 +2,7 @@
 import selectedsProduct from '@/lib/api/selectedProduct';
 import React from 'react';
 import getRelatedProducts from "@/productCategoryAction/relatedProducts";
-import { ProductType } from '@/types/product.type';
+import { Product } from '@/types/product.type';
 
 import SingleProduct from '@/app/singleProduct/singleProduct';
 type Params = { id: string };
@@ -23,7 +23,7 @@ console.log('RelatedProducts:', RelatedProducts);
     
   <div className='flex flex-wrap gap-12 w-[90%] mx-auto justify-center rounded-lg my-10'>
   
-     {RelatedProducts?.map((currentProduct: ProductType) => ( 
+     {RelatedProducts?.map((currentProduct: Product) => ( 
        
       <SingleProduct key={currentProduct.id} product={currentProduct} /> 
   

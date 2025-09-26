@@ -14,7 +14,7 @@ export interface Metadata {
   nextPage: number
 }
 
-export  interface ProductType {
+export  interface Product {
   sold?: number
   images: string[]
   subcategory: Subcategory[]

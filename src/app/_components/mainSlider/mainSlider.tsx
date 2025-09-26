@@ -11,8 +11,8 @@ import { Autoplay } from 'swiper/modules';
 
 const MainSlider = () => {
   return (
-    <div className="w-[90%] mx-auto my-4 p-4 flex flex-row md:flex-column gap-3">
-      <div className="w-full md:w-3/4 ">
+    <div className="w-[80%] mx-auto my-4 p-4 flex grid grid-cols-4  gap-3">
+      <div className="col-span-4 md:col-span-3  ">
         <Swiper
           spaceBetween={0}
           slidesPerView={1}
@@ -43,16 +43,16 @@ const MainSlider = () => {
           </SwiperSlide>
         </Swiper>
       </div>
-      <div className="w-1/4">
+      <div className="col-span-4 md:col-span-1 flex flex-col gap-3">
         <Image
           src={img2}
           alt="Sidebar Image 1"
-          className="w-full h-[200px] md:h-[400px] object-cover object-center"
+          className="w-full h-[200px] md:h-[195px] object-cover object-center"
         />
         <Image
           src={img3}
           alt="Sidebar Image 2"
-          className="w-full h-[200px] md:h-[400px] object-cover object-center"
+          className="w-full h-[200px] md:h-[195px] object-cover object-center"
         />
       </div>
     </div>

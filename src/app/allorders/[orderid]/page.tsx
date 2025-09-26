@@ -92,7 +92,7 @@ console.log(orderid)
       </div>
 
   
-      <div className="bg-gray-100 p-4 rounded shadow-sm">
+      <div className="bg-gray-800 p-4 rounded shadow-sm">
         <h2 className="text-xl font-semibold mb-2">عنوان الشحن:</h2>
         <p><strong>City:</strong> {order?.shippingAddress?.city}</p>
         <p><strong>Details:</strong> {order?.shippingAddress?.details}</p>
